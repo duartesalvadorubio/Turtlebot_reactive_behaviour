@@ -1,4 +1,13 @@
 # Turtlebot_reactive_behaviour
+## Included files
+
+This repository consists of several files:
+
+- **data.csv** and **data2.csv** 	: CSV files used to train the Machine Learning Models.
+- **wall_follower.py** 			: Rule-based wall follower behaviour controller.
+- **wall_follower_PID.py** 		: PID based wall follower behaviour controller. Two different PID implemented.
+- **wall_follower_Machine_Learning.py** : Wall follower behaviour controller based on two different Machine Learning approaches.
+
 ## 1. Introduction
 
 This project focuses on the implementation of different reactive behaviour algorithms in a mobile robot. The task to be completed is wall following, in which the robot must move parallel to the wall, avoiding collision with it and maintaining a certain margin of distance. 
@@ -22,18 +31,20 @@ In fact, only 3 different measurements are taken into account for the behavioura
 
 Table 1. Distance measurements taken
 
-Measurement	Front	Corner	Side
-Corresponding angle	180	135	90
+| Measurement         | Front | Corner | Side |
+|---------------------|-------|--------|------|
+| Corresponding angle | 180   | 135    | 90   |
 
 The logic of the programme consists in using the measurements of these three angles and compare them with a threshold. This allows to analyse whether there is front, side or corner wall detection, and to act accordingly. Avoiding an impact with a front wall will be prioritised over side wall tracking, which is implemented by moving towards or away from it as necessary. 
 The behaviour follows the following truth table:
 
 Table 2. Behaviour truth table
 
-Left side wall	Front Wall	Action
-Doesn´t matter	Yes	Rotate right
-No	No	Turn Left
-Yes	No	Move Forward
+| Left side wall | Front Wall | Action       |
+|----------------|------------|--------------|
+| Doesn´t matter | Yes        | Rotate right |
+| No             | No         | Turn Left    |
+| Yes            | No         | Move Forward |
 
 To implement this behaviour, a set of functions are defined that will drive the robot according to the action to be performed, commanding the motors with the necessary speed commands.
 
@@ -47,7 +58,9 @@ In a control loop, this regulation allows to act on a plant by means of actuator
 Figure 2. Closed loop control system
 
 The continuous-time equation for a PID is as follows [4]:
-u_PID=K_P∙e(t)+K_I∙∫_(t=0)^t▒e(t)dt+K_D  (de(t))/dt
+
+*u_PID = K_P∙e(t) + K_I∙∫_(t=0)^t e(t)dt + K_D(de(t))/dt*
+
 This continuous-time controller, in order to be implemented in a discrete system, such as a robot computer, must be discretised.
 Two different approaches are carried out, one using a simple PID and the other one discretising a continuous PID by means of a Z-transform. 
 For both cases, the integral performance is not of interest and will not be used. The steady state behaviour is adequate and it is observed that adding a pole to the system (in this case, an integrator) makes it marginally stable, going into permanent oscillations. 
@@ -61,15 +74,15 @@ The equation used is:
 
 Where:
 
-	- error: is the subtraction between the lateral distance margin and the sensor measurement at 90º (left).
-	- rateError: is the subtraction between the current (instant k) and previous (instant k - 1) error signal.
-	- cumError: It is the accumulated sum of the current error with the previous ones. 
+- *error*: is the subtraction between the lateral distance margin and the sensor measurement at 90º (left).
+- *rateError*: is the subtraction between the current (instant k) and previous (instant k - 1) error signal.
+- *cumError*: It is the accumulated sum of the current error with the previous ones. 
   
 Different gains are tested, finally obtaining a satisfactory response with Kp = 30, Kd= 12 and Ki = 0.
 Discretized PID 
 In addition to the widely used simple discrete PID, the discretisation of a continuous PID is carried out using the Tustin method and the inverse Z-transform (developed in the Appendix). The equation in differences is obtained, which can be implemented in a discrete controller such as the one used by this robot. The difference equation of the controller is:
 
-*u_k=u_(k-1)+K_p (e_k-e_(k-1) )+(K_p∙T)/T_i  e_k+(K_p∙T_d)/T(e_k-2e_(k-1)+e_(k-2))*
+*u_k = u_(k-1) + K_p (e_k-e_(k-1) ) + (K_p∙T)/T_i  e_k + (K_p∙T_d)/T(e_k-2e_(k-1) + e_(k-2))*
 
 For this controller, different parameters are tested, obtaining a satisfactory response with Kp = 50, Kd = 25 and Ki = 0.
 Although in this case it is not necessary, as it does not use an integral action, it is good practice in control engineering to use a system that avoids over-actuation due to the accumulation of integral error in the case of having a limited action on the plant. 
