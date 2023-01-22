@@ -1,0 +1,100 @@
+#VRML_SIM R2022b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/robots/robotis/turtlebot/protos/TurtleBot3Burger.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/objects/apartment_structure/protos/Wall.proto"
+
+WorldInfo {
+  basicTimeStep 16
+}
+Viewpoint {
+  orientation -0.5792651744253934 0.5792651581272686 0.5735012940505968 2.100183093120571
+  position -1.782673349466204e-05 0.0392698112689736 4.124201555709027
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  rotation 0 1 0 0
+  floorSize 3 3
+  floorTileSize 0.25 0.25
+  wallHeight 0.2
+}
+Wall {
+  translation 1.25 0 0
+  rotation 0 0 1 -1.5707953071795862
+  name "wall(12)"
+  size 0.05 0.5 0.2
+}
+Wall {
+  translation 0.75 -0.5 0
+  rotation 0 0 1 -1.5707953071795862
+  name "wall(8)"
+  size 0.05 0.5 0.2
+}
+Wall {
+  translation 0.75 0.5 0
+  rotation 0 0 1 -1.5707953071795862
+  name "wall(11)"
+  size 0.05 0.5 0.2
+}
+Wall {
+  translation 0 -0.5 0
+  rotation 0 0 1 -1.5707953071795862
+  name "wall(10)"
+  size 0.05 1 0.2
+}
+Wall {
+  translation -0.01 0.65 0
+  name "wall(6)"
+  size 0.05 1 0.2
+}
+Wall {
+  translation 0.5 -1 0
+  name "wall(9)"
+  size 0.05 1 0.2
+}
+Wall {
+  translation -0.25 0.5 0
+  rotation 0 0 1 -1.5707953071795862
+  name "wall(5)"
+  size 0.05 0.5 0.2
+}
+Wall {
+  translation -1 -0.5 0
+  name "wall(1)"
+  size 0.05 1 0.2
+}
+Wall {
+  translation 0.5 1 0
+  name "wall(7)"
+  size 0.05 1 0.2
+}
+TurtleBot3Burger {
+  translation -1.27966 -0.811053 -0.000124111
+  rotation 0.0009432051005278553 -0.000947207100954393 0.999999106581024 2.0944
+  controller "wall_follower"
+}
+Wall {
+  translation -1 0.25 0
+  size 0.05 0.5 0.2
+}
+Wall {
+  translation -0.75 0.5 0
+  rotation 0 0 1 -1.5707953071795862
+  name "wall(4)"
+  size 0.05 0.5 0.2
+}
+Wall {
+  translation -1 0.75 0
+  name "wall(2)"
+  size 0.05 0.5 0.2
+}
+Wall {
+  translation -0.5 1.25 0
+  name "wall(3)"
+  size 0.05 0.5 0.2
+}
