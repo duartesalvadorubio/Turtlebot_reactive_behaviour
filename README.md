@@ -17,6 +17,8 @@ Several different methods are used to realise this reactive behaviour. The first
 The robot used is a Turtlebot 3 Burger [2]. This is a differential configuration robot equipped with a laser scanner that allows it to detect obstacles around it and will be used to track walls.
 The following sections detail the different topics of the process that has been followed. The tracking implemented is designed for walls on the left side of the robot. The process for walls on the right side is analogous to that carried out, and the programme can be adapted in a trivial way.
 
+Video: https://youtu.be/DaTHFELjoKE
+
 ## 2. Robot controllers
 
 ### 2.1 Ruled based controller
